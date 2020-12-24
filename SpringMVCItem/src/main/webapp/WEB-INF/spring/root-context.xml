@@ -21,6 +21,7 @@
 		
 	
 	<!-- MyBatis를 XML을 이용하는 경우의 bean -->
+	<!-- 
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -33,6 +34,23 @@
 	<bean id="sqlSession"
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	 -->
+	 
+	 <!-- Mapper 인터페이스를 이용하는 
+	 MyBatis 설정 -->
+	 <bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean 
+	class="org.mybatis.spring.mapper.MapperFactoryBean"
+	id="itemmapper">
+		<property name="sqlSessionFactory" 
+		ref="sqlSessionFactory" />
+		<property name="mapperInterface"
+		value="kakao.itstudy.item.service.ItemMapper"/>
 	</bean>
 	
 	

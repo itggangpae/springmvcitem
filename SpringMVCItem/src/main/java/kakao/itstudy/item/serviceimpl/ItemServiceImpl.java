@@ -9,14 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kakao.itstudy.item.domain.Item;
+import kakao.itstudy.item.service.ItemMapper;
 import kakao.itstudy.item.service.ItemService;
 
 //bean을 자동으로 생성해주는 어노테이션
 @Service
 public class ItemServiceImpl implements ItemService {
 	//사용할 DAO 클래스의 인스턴스를 주입받아야 합니다.
+	//@Autowired
+	//private ItemDAO itemDao;
+	
 	@Autowired
-	private ItemDAO itemDao;
+	private ItemMapper itemDao;
 
 	@Override
 	public void listitem(HttpServletRequest request, HttpServletResponse response) {

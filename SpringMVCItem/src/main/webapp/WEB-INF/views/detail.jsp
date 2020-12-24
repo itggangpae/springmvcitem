@@ -41,7 +41,6 @@ href="${pageContext.request.contextPath}/css/style.css">
 				</table>
 			</tr>	
 		</table>
-	
 	</div>
 </body>
 </html>
