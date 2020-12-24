@@ -6,7 +6,6 @@
 	<select 
 		id="listitem"
 		resultType="Item">
-		
 		select * from item	
 	</select>
 </mapper>
