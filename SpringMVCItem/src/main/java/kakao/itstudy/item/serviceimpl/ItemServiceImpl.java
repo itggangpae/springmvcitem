@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kakao.itstudy.item.domain.Item;
 import kakao.itstudy.item.service.ItemMapper;
@@ -19,9 +20,13 @@ public class ItemServiceImpl implements ItemService {
 	//@Autowired
 	//private ItemDAO itemDao;
 	
+	//@Autowired
+	//private ItemMapper itemDao;
+	
 	@Autowired
-	private ItemMapper itemDao;
+	private ItemHibernateDAO itemDao;
 
+	@Transactional
 	@Override
 	public void listitem(HttpServletRequest request, HttpServletResponse response) {
 		//1.파라미터 읽기
@@ -39,6 +44,7 @@ public class ItemServiceImpl implements ItemService {
 		
 	}
 
+	@Transactional
 	@Override
 	public void getitem(
 			HttpServletRequest request,
