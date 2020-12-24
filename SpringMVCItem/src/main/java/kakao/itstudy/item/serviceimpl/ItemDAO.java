@@ -23,4 +23,10 @@ public class ItemDAO {
 		return sqlSession.selectList(
 				"item.listitem");
 	}
+	
+	//itemid를 가지고 하나의 데이터를 가져오는 메소드
+	public Item getitem(int itemid) {
+		return sqlSession.selectOne(
+			"item.getitem", itemid);
+	}
 }

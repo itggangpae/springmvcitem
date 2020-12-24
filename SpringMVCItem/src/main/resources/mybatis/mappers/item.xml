@@ -8,4 +8,13 @@
 		resultType="Item">
 		select * from item	
 	</select>
+	
+	<select
+		id="getitem"
+		parameterType="java.lang.Integer"
+		resultType="Item">
+		select *
+		from item
+		where itemid = #{itemid}	
+	</select>
 </mapper>

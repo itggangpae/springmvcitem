@@ -35,4 +35,17 @@ public class ItemServiceImpl implements ItemService {
 		
 	}
 
+	@Override
+	public void getitem(
+			HttpServletRequest request,
+			HttpServletResponse response,
+			int itemid) {
+		//DAO 메소드 호출
+		Item item = itemDao.getitem(itemid);
+		
+		//결과 저장
+		request.setAttribute("item", item);
+		
+	}
+
 }

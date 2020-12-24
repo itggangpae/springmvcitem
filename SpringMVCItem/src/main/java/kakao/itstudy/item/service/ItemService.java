@@ -8,4 +8,10 @@ public interface ItemService {
 	public void listitem(
 			HttpServletRequest request, 
 			HttpServletResponse response);
+	
+	//Item 테이블에서 1개의 데이터를 가져오는 메소드
+	public void getitem(
+			HttpServletRequest request, 
+			HttpServletResponse response,
+			int itemid);
 }
