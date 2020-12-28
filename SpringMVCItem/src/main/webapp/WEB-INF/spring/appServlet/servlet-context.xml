@@ -45,6 +45,14 @@
 	<beans:bean id="excel"
 	class="kakao.itstudy.item.service.ExcelView"/>
 	
+	<!-- pdf라는 view 이름이 온 경우 출력할 뷰를 결정 -->
+	<beans:bean id="pdf"
+	class="kakao.itstudy.item.service.PdfView"/>
+	
+	<!-- json이라는 view 이름이 온 경우 출력할 뷰를 결정 -->
+	<beans:bean id="json"
+	class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+	
 	<!-- annotation이 붙은 클래스의 bean을 자동 생성하는
 	패키지를 지정 -->
 	<context:component-scan
