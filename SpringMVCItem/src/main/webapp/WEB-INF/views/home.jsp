@@ -20,6 +20,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 				<th align="center" width="80">상품 코드</th>
 				<th align="center" width="320">상품명</th>
 				<th align="center" width="100">가격</th>
+				<th align="center" width="100">이미지</th>
 			</tr>
 			
 			<c:forEach var="item" items="${list}">
@@ -30,9 +31,13 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 					${item.itemname}</a>
 					</td>
 					<td align="center">${item.price}</td>
+					<td><a href="download?filename=${item.pictureurl}">
+					${item.pictureurl}</a></td>
 				</tr>
 			</c:forEach>	
 		</table>
+		
+		<a href="item.xls">엑셀 다운로드</a></br>
 	</div>
 	
 </body>

@@ -17,6 +17,13 @@
 	</properties>
 
 	<dependencies>
+		<!-- Excel 파일 사용을 위한 의존성 라이브러리 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.16</version>
+		</dependency>
+
 		<!-- MySQL 의존성 -->
 		<dependency>
 			<groupId>mysql</groupId>

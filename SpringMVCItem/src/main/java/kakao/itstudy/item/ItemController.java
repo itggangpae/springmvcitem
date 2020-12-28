@@ -5,9 +5,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kakao.itstudy.item.service.ItemService;
 
@@ -42,6 +44,40 @@ public class ItemController {
 			request, response, itemid);
 		//결과는 detail
 		return "detail";
+	}
+	
+	@RequestMapping(
+			value="download", 
+			method=RequestMethod.GET)
+	public String download(
+		HttpServletRequest request,
+		Model model) {
+		//파라미터 읽어오기
+		String filename = 
+				request.getParameter("filename");
+		//파일의 절대 경로 만들기
+		//프로젝트 내에 존재하는 파일의 절대 경로를 만들기
+		String filepath = 
+				request.getServletContext()
+					.getRealPath("/img") + "/" +
+						filename;
+		//절대 경로를 저장
+		model.addAttribute("filepath", filepath);
+		//출력할 뷰 이름을 리턴
+		return "download";
+	}
+	
+	@RequestMapping(value="item.xls",
+			method=RequestMethod.GET)
+	public String excel(
+			Model model,
+			HttpServletRequest request,
+			HttpServletResponse response) {
+		//서비스 메소드 호출
+		itemService.listitem(request, response);
+		//request 에 저장된 데이터를 확인
+		//list 라는 속성에 List<Item> 타입으로 존재
+		return "excel";
 	}
 
 }
