@@ -1,6 +1,8 @@
 package kakao.itstudy.item.serviceimpl;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kakao.itstudy.item.domain.Item;
 import kakao.itstudy.item.service.ItemMapper;
@@ -55,6 +59,51 @@ public class ItemServiceImpl implements ItemService {
 		
 		//결과 저장
 		request.setAttribute("item", item);
+		
+	}
+
+	@Transactional
+	@Override
+	public void itemInsert(
+			MultipartHttpServletRequest request,
+			HttpServletResponse response) {
+		//1.파라미터 읽기
+		String itemname = 
+				request.getParameter("itemname");
+		String price = 
+				request.getParameter("price");
+		String description = 
+				request.getParameter("description");
+		MultipartFile file = 
+				request.getFile("pictureurl");
+		String pictureurl = null;
+		//업로드하는 파일이 있다면
+		if(file.isEmpty() == false) {
+			//프로젝트 내의 img 디렉토리의 절대 경로 만들기
+			String filepath = 
+				request.getServletContext().
+				getRealPath("/img");
+			//저장할 파일이름을 생성
+			pictureurl = UUID.randomUUID() 
+					+ file.getOriginalFilename();
+			filepath += "/" + pictureurl;
+			
+			//파일 업로드
+			File f = new File(filepath);
+			try {
+				file.transferTo(f);
+			}catch(Exception e) {}
+			
+		}
+		//데이터베이스에 데이터를 삽입
+		Item item = new Item();
+		item.setItemid(itemDao.maxItemId() + 1);
+		item.setItemname(itemname);
+		item.setPrice(Integer.parseInt(price));
+		item.setDescription(description);
+		item.setPictureurl(pictureurl);
+		
+		itemDao.itemInsert(item);
 		
 	}
 }

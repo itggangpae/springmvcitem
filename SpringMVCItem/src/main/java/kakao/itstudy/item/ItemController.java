@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kakao.itstudy.item.domain.Item;
 import kakao.itstudy.item.domain.ItemReport;
@@ -173,6 +174,15 @@ public class ItemController {
 			method=RequestMethod.GET)
 	public String iteminsert() {
 		return "iteminsert";
+	}
+	
+	@RequestMapping(value="iteminsert", 
+			method=RequestMethod.POST)
+	public String iteminsert(
+			MultipartHttpServletRequest request, 
+			HttpServletResponse response) {
+		itemService.itemInsert(request, response);
+		return "redirect:/";
 	}
 	
 	@ExceptionHandler(Exception.class)
