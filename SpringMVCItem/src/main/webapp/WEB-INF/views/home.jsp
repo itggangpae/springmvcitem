@@ -44,6 +44,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 		<a href="#" id="display">ajax로 데이터 가져오기</a><br/>
 		<a href="item.xml">XML 요청</a><br/>
 		<a href="message">스프링 메시지 출력</a><br/>
+		<a href="login">로그인</a><br/>
+		<a href="iteminsert">아이템 추가</a><br/>
 		
 		<form action="cal" method="post"id="cal">
 			첫번째 수:<input type="text" 

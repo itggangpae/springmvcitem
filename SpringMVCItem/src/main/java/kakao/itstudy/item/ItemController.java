@@ -169,6 +169,12 @@ public class ItemController {
 		return "message";
 	}
 	
+	@RequestMapping(value="iteminsert", 
+			method=RequestMethod.GET)
+	public String iteminsert() {
+		return "iteminsert";
+	}
+	
 	@ExceptionHandler(Exception.class)
 	public String exception() {
 		return "error/exception";
