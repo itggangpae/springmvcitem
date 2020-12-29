@@ -43,6 +43,15 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 		<a href="controller.json">RestController를 이용한 json 출력</a><br/>
 		<a href="#" id="display">ajax로 데이터 가져오기</a><br/>
 		<a href="item.xml">XML 요청</a><br/>
+		<a href="message">스프링 메시지 출력</a><br/>
+		
+		<form action="cal" method="post"id="cal">
+			첫번째 수:<input type="text" 
+			id="num1" name="num1" /><br/>
+			두번째 수:<input type="text" 
+			id="num2" name="num2" /><br/>
+			<input type="submit" value="더하기" />
+		</form>
 	</div>
 	
 	<div align="center" class="body" id="disp">

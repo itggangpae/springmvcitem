@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -141,6 +142,36 @@ public class ItemController {
 		//request 에 저장된 데이터를 확인
 		//list 라는 속성에 List<Item> 타입으로 존재
 		return "itemReport";
+	}
+	
+	@RequestMapping(value="cal", method=RequestMethod.POST)
+	public String cal(
+			Model model,
+			HttpServletRequest request,
+			HttpServletResponse response) {
+		//2개의 파라미터를 읽기
+		String num1 = request.getParameter("num1");
+		String num2 = request.getParameter("num2");
+		
+		int result = 
+				Integer.parseInt(num1) + 
+				Integer.parseInt(num2);
+		
+		model.addAttribute("result", result);
+		
+		return "result";
+	}
+	
+	@RequestMapping(
+			value="message",
+			method=RequestMethod.GET)
+	public String message() {
+		return "message";
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public String exception() {
+		return "error/exception";
 	}
 
 
