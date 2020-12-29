@@ -42,6 +42,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 		<a href="view.json">view를 이용한 json 출력</a><br/>
 		<a href="controller.json">RestController를 이용한 json 출력</a><br/>
 		<a href="#" id="display">ajax로 데이터 가져오기</a><br/>
+		<a href="item.xml">XML 요청</a><br/>
 	</div>
 	
 	<div align="center" class="body" id="disp">

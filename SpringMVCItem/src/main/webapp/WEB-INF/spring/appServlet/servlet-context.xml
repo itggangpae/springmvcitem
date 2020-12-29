@@ -53,6 +53,24 @@
 	<beans:bean id="json"
 	class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
 	
+	<!-- itemReport 라는 view 이름 온 경우 출력할 뷰를 결정 -->
+	<beans:bean id="marshaller"
+		class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<beans:property name="classesToBeBound">
+			<beans:list>
+				<beans:value>
+					kakao.itstudy.item.domain.ItemReport
+				</beans:value>
+			</beans:list>
+		</beans:property>	
+	</beans:bean>
+	
+	<beans:bean id="itemReport"
+	class="org.springframework.web.servlet.view.xml.MarshallingView">
+		<beans:property name="marshaller" ref="marshaller"/>
+		<beans:property name="modelKey" value="list" />
+	</beans:bean>
+	
 	<!-- annotation이 붙은 클래스의 bean을 자동 생성하는
 	패키지를 지정 -->
 	<context:component-scan

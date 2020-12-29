@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kakao.itstudy.item.domain.Item;
+import kakao.itstudy.item.domain.ItemReport;
 import kakao.itstudy.item.service.ItemService;
 
 //bean을 자동 생성해주는 어노테이션
@@ -110,12 +111,38 @@ public class ItemController {
 		List<Item> list = 
 				(List<Item>)
 					request.getAttribute("list");
+		
 		model.addAttribute("list", list);
 		
 		//request 에 저장된 데이터를 확인
 		//list 라는 속성에 List<Item> 타입으로 존재
 		return "json";
 	}
+	
+	@RequestMapping(value="item.xml",
+			method=RequestMethod.GET)
+	public String xml(
+			Model model,
+			HttpServletRequest request,
+			HttpServletResponse response) {
+		//서비스 메소드 호출
+		itemService.listitem(request, response);
+		
+		//request에 저장된 데이터를 읽어서 
+		//model에 저장
+		List<Item> list = 
+				(List<Item>)
+					request.getAttribute("list");
+		ItemReport itemReport = 
+				new ItemReport();
+			itemReport.setList(list);
+		model.addAttribute("list", itemReport);
+		
+		//request 에 저장된 데이터를 확인
+		//list 라는 속성에 List<Item> 타입으로 존재
+		return "itemReport";
+	}
+
 
 
 }
